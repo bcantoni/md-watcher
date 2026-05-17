@@ -1,0 +1,20 @@
+Install Pandoc
+
+brew install pandoc
+pandoc --version
+
+brew install --cask basictex
+ln -s -v /Library/TeX/texbin/pdflatex ~/.local/bin/pdflatex
+pdflatex --version
+
+Confirm Pandoc conversions are working
+
+pandoc input.md -o output.html -s --css=style.css --embed-resources
+pandoc CLAUDE.md -s -V geometry:margin=1in -o CLAUDE.pdf
+
+pandoc2.css is the best so far
+github.css is pretty good but needs wider margins
+pandoc FILENAME.md -s --css pandoc2.css --embed-resources -o FILENAME.html
+
+For PDF output, there are options to create a Latex template (maybe claude code
+could help create a simple one), but for now starting with default.

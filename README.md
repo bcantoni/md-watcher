@@ -3,7 +3,11 @@
 This is a simple project to watch my Documents folder and automatically create
 PDF and HTML versions of any new or updated Markdown files.
 
-This is all based on the [Pandoc universal document converter][pandoc] and is
+My use case: I have a few long-running Claude Code skills that produce Markdown
+files as their output. Rather than burdening the AI tool with creating a couple
+different formats, I created this watcher script to do it in the background.
+
+The implementation uses the [Pandoc universal document converter][pandoc] and is
 built for macOS. (It could be adapted to other platforms.)
 
 My idea - Claude's code.
@@ -40,6 +44,7 @@ brew install pandoc fswatch
 pandoc --version
 
 brew install --cask basictex
+# link pdflatex to a location already in my PATH
 ln -s -v /Library/TeX/texbin/pdflatex ~/.local/bin/pdflatex
 pdflatex --version
 ```
@@ -65,5 +70,7 @@ logs each result to stdout.
   `name.md~` backups, `.swp`) do not trigger conversion.
 - pandoc errors are printed to stderr and surfaced in a failure notification;
   the source file is left as-is.
+- Todo: set this up to run with `launchd` to avoid the need for the watcher
+  script always running
 
 [pandoc]: https://pandoc.org/
